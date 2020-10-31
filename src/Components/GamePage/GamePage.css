@@ -1,0 +1,55 @@
+@media (orientation: portrait) {
+    .game-page-main {
+        padding-left: 1vw;
+        padding-right: 1vw;
+        width: 100%;
+        background-color: gray;
+    }
+
+    .game-header {
+        margin-top: 2vw;
+        margin-bottom: 1vw;
+        height: 14vw;
+        width: 98vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .game-field-heder-color {
+        width: 14vw;
+        height: 14vw;
+        border-radius: 25%;
+    }
+
+    .game-field-heder-color-1 {
+        width: 14vw;
+        height: 14vw;
+        border-radius: 20%;
+    }
+
+    .game-field-main {
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+        height: calc(100vh - 22vw);
+        width: 98vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .game-field {
+        max-width: 98vw;
+        max-height: calc(100vh - 22vw);
+    }
+
+    .game-field canvas {
+        max-width: 98vw;
+        max-height: calc(100vh - 22vw);
+    }
+
+    .game-footer {
+        margin-top: 1vw;
+        margin-bottom: 2vw;
+        height: 8vw;
+    }
+}
