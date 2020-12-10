@@ -10,6 +10,7 @@ import { Provider } from 'react-gstore';
 import SettingsStore from './Store/SettingsStore'
 import NewGameStore from './Store/NewGameStore'
 import Loading from './Components/Loading/Loading'
+import About from './Components/About/About'
 
 interface RootComponentProps {
     children?: React.ReactNode
@@ -55,6 +56,7 @@ ReactDOM.render(
                         <Route exact path='/game' component={GamePage}/>
                         <Route exact path='/settings' component={SettingPage}/> 
                         <Route exact path='/loading' component={Loading} />
+                        <Route exact path='/about' component={About} />
                     </Switch>
                 </Router>
             </RootComponent>
