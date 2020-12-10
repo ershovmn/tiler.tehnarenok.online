@@ -1,0 +1,61 @@
+/* autoprefixx grid: on */
+
+.home-main {
+    width: 50%;
+    max-width: 500px;
+    margin: 20px auto 0px;
+    font-size: medium;
+}
+
+.home-main header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-main header img {
+    height: 50px;
+}
+
+@media (max-width: 750px) {
+    .home-main {
+        width: 90%;
+    }
+}
+
+.home-main h2 {
+    margin: 0px;
+}
+
+.home-main select {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: medium;
+    outline-style: none;
+    background-color: var(--bg);
+    color: var(--tc);
+    padding: 1.5%;
+    border-radius: 5px;
+}
+
+.home-main .my-button {
+    background-color: #007bff;
+    border-radius: 7px;
+    padding: 7px;
+    font-size: medium;
+    width: max-content;
+}
+
+.home-page-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.home-page-buttons a {
+    text-decoration: none;
+    color: white;
+    margin-left: 10px;
+}
