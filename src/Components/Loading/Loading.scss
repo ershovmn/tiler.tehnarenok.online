@@ -1,0 +1,25 @@
+.g-circles circle {
+    transform-origin: 120px 120px;
+    transform: rotate(0);
+}
+.g-circles circle {
+    animation: rotation 4s infinite alternate;
+}
+  
+@for $i from 2 through 15 {
+    .g-circles circle:nth-child(#{$i}){
+        animation-delay: #{$i/4}s;
+    }
+}
+  
+@keyframes rotation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+// @-webkit-keyframes blinker {
+//     from { opacity: 1.0 }
+//     to { opacity: 0.0 }
+// }
