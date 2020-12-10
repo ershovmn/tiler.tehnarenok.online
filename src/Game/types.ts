@@ -44,6 +44,11 @@ export interface IGame {
     players: Array<PlayerState>,
     move: number,
     countColors: number,
+    seed: string,
+    gameOver: () => boolean,
+    Move : (color : number) =>  void,
+    testMove?: (color: number) => number
+    state?: () => IGame
 }
 
 export default IGame
