@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --bg: #ffffff;
+  --tc: #000000;
+  cursor: url('http:/localhost:3000/static/cursor.png'), auto;
 }
 
 code {
