@@ -2,15 +2,21 @@ import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
-import Home from './Components/Home/Home'
-import GamePage from './Components/GamePage/GamePage'
 import SettingPage from './Components/SettingsPage/SettingPage'
 import './index.css'
 import { Provider } from 'react-gstore';
 import SettingsStore from './Store/SettingsStore'
 import NewGameStore from './Store/NewGameStore'
-import Loading from './Components/Loading/Loading'
-import About from './Components/About/About'
+
+// import Home from './Components/Home/Home'
+// import GamePage from './Components/GamePage/GamePage'
+// import Loading from './Components/Loading/Loading'
+// import About from './Components/About/About'
+
+const Home = React.lazy(() => import('./Components/Home/Home'))
+const GamePage = React.lazy(() => import('./Components/GamePage/GamePage'))
+const Loading = React.lazy(() => import('./Components/Loading/Loading'))
+const About = React.lazy(() => import('./Components/About/About'))
 
 interface RootComponentProps {
     children?: React.ReactNode
