@@ -1,23 +1,64 @@
-import React from 'react';
+import React, { Children } from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
-import Home from './Components/Home'
-import Home1 from './Components/Home1'
+import Home from './Components/Home/Home'
 import GamePage from './Components/GamePage/GamePage'
 import SettingPage from './Components/SettingsPage/SettingPage'
 import './index.css'
+import { Provider } from 'react-gstore';
+import SettingsStore from './Store/SettingsStore'
+import NewGameStore from './Store/NewGameStore'
+import Loading from './Components/Loading/Loading'
+
+interface RootComponentProps {
+    children?: React.ReactNode
+}
+
+const loadStores = () => {
+    const settingsStoreDefault = {theme: 1, name: ''}
+    const settingsStoreString = localStorage.getItem('SettingsStoreTiler4_0')
+
+    let settingsState = settingsStoreString ? JSON.parse(settingsStoreString) : settingsStoreDefault
+
+    return {settingsState}
+}
+
+const RootComponent = (props : RootComponentProps) => {
+    let settings = SettingsStore.useContainer()
+    if (settings.theme === 0) {
+        document.body.style.color = 'white'
+        document.body.style.backgroundColor = '#333333'
+        document.body.style.setProperty('--bg', '#333333')
+        document.body.style.setProperty('--tc', 'white')
+    } else {
+        document.body.style.color = '#000000'
+        document.body.style.backgroundColor = '#ffffff'
+        document.body.style.setProperty('--bg', '#ffffff')
+        document.body.style.setProperty('--tc', '#000000')
+    }
+    return <>{props.children}</>
+}
+
+console.log(process.env)
 
 ReactDOM.render(
     <React.StrictMode>
-        <Router>
-            <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route exact path='/h' component={Home1}/>
-                <Route exact path='/game' component={GamePage}/>
-                <Route exact path='/settings' component={SettingPage}/> 
-            </Switch>
-        </Router>
+        <Provider containers={[
+            {container: SettingsStore},
+            {container: NewGameStore}
+        ]}>
+            <RootComponent>
+                <Router>
+                    <Switch>
+                        <Route exact path='/' component={Home}/>
+                        <Route exact path='/game' component={GamePage}/>
+                        <Route exact path='/settings' component={SettingPage}/> 
+                        <Route exact path='/loading' component={Loading} />
+                    </Switch>
+                </Router>
+            </RootComponent>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );
