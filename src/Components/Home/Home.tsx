@@ -77,16 +77,14 @@ const Home = () => {
     sendChannel.onopen = () => console.log('open')
     sendChannel.onclose = () => console.log('close' )
 
-    useEffect(() => {
-        fetch('/api', {credentials: 'same-origin'})
-            .then(res => console.log(res))
-    }, [])
-
     return (
         <div className='home-main'>
             <header>
                 <h1>Tiler 4.0</h1>
-                <a href='/settings'><img src={require('../../img/settings.svg')} alt='settings'/></a>
+                <div>
+                    <a href='/about'><img src={require('../../img/about.png')} alt='settings'/></a>
+                    <a href='/settings'><img src={require('../../img/settings.svg')} alt='settings'/></a>
+                </div>
             </header>
             {gameParams.map((param, idx) => {
                 return (
@@ -101,16 +99,17 @@ const Home = () => {
             })}
             <div className='home-page-buttons'>
                 <a onClick={
-                    () => localStorage.setItem('CUURENT_GAME_TILER_4_0', JSON.stringify(new Game({
-                        typeGame: store.gameType,
-                        botLevel: store.botLevel,
-                        fieldType: store.fieldType,
-                        countColors: store.countColors,
-                        fieldSize: store.fieldSize,
-                        startPointsType: store.startCellsType,
-                        type: '1',
-                        seed: store.seed
-                    })))
+                    () => {
+                        localStorage.setItem('CUURENT_GAME_TILER_4_0', JSON.stringify(new Game({
+                            typeGame: store.gameType,
+                            botLevel: store.botLevel,
+                            fieldType: store.fieldType,
+                            countColors:  store.countColors,
+                            fieldSize: store.fieldSize,
+                            startPointsType: store.startCellsType,
+                            type: '1',
+                            seed: undefined
+                    })))}
                 } href='/game'>
                     <div className='my-button'>
                         {buttonNewGameName[lang]}
