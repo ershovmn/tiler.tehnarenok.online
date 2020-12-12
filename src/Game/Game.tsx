@@ -12,7 +12,8 @@ export interface GamePropsFromSettings {
     countColors: number,
     fieldSize: number,
     startPointsType: number,
-    seed? : string
+    seed? : string,
+    playerID? : number,
 }
 
 export interface GamePropsFromGame {
@@ -28,8 +29,10 @@ class Game implements IGame {
     move : number = 0
     countColors : number = 4
     seed = ''
+    playerID = 0
 
     constructor(props: GamePropsFromSettings | GamePropsFromGame) {
+        console.log(props.type)
         if(props.type === "0") {
             this.typeGame = props.game.typeGame
             this.field = props.game.field
@@ -38,6 +41,7 @@ class Game implements IGame {
             this.move = props.game.move
             this.countColors = props.game.countColors
             this.seed = props.game.seed
+            this.playerID = props.game.playerID
             return
         }
         this.typeGame = props.typeGame
@@ -50,6 +54,7 @@ class Game implements IGame {
             startCellsType: props.startPointsType,
             seed: props.seed,
         })
+        this.playerID = props.playerID ? props.playerID : 0
 
         this.seed = this.field.seed
 
@@ -73,7 +78,7 @@ class Game implements IGame {
     }
 
     Move = (color : number) => {
-        console.log("move")
+        console.log("move", this.move)
         let playerID = this.move
         let front = this.players[playerID].front
         let countPoints : number = this.players[playerID].countPoints
@@ -97,7 +102,7 @@ class Game implements IGame {
         this.players[playerID].countPoints = countPoints
         this.move = (this.move + 1) % 2
 
-        if(this.typeGame === 0 && playerID === 0) {
+        if(this.typeGame === 0 && playerID === this.playerID) {
             let bot = new Bot()
             this.Move(bot.move(this.move, this))
         }
@@ -136,13 +141,28 @@ class Game implements IGame {
     }
 
     gameOver = () => {
-        if((this.field.size.x * this.field.size.y) / 2 <= this.players[0].countPoints) {
-            return true
-        }
-        if((this.field.size.x * this.field.size.y) / 2 <= this.players[1].countPoints) {
-            return true
+        for(let i = 0; i < this.players.length; i++) {
+            if((this.field.size.x * this.field.size.y) / 2 <= this.players[i].countPoints) {
+                return true
+            }
         }
         return false
+    }
+
+    winner = () => {
+        let winner = -1;
+        let maxPoints = -1;
+        for(let i = 0; i < this.players.length; i++) {
+            if(this.players[i].countPoints > maxPoints) {
+                maxPoints = this.players[i].countPoints
+                winner = i
+            }
+        }
+        return winner
+    }
+
+    youWin = () => {
+        return this.winner() === this.playerID
     }
 }
 
