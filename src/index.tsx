@@ -18,15 +18,6 @@ interface RootComponentProps {
     children?: React.ReactNode
 }
 
-const loadStores = () => {
-    const settingsStoreDefault = {theme: 1, name: ''}
-    const settingsStoreString = localStorage.getItem('SettingsStoreTiler4_0')
-
-    let settingsState = settingsStoreString ? JSON.parse(settingsStoreString) : settingsStoreDefault
-
-    return {settingsState}
-}
-
 const RootComponent = (props : RootComponentProps) => {
     let settings = SettingsStore.useContainer()
     if (settings.theme === 0) {
