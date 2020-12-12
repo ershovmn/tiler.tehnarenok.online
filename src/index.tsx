@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { Children, Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
@@ -8,14 +8,10 @@ import { Provider } from 'react-gstore';
 import SettingsStore from './Store/SettingsStore'
 import NewGameStore from './Store/NewGameStore'
 
-// import Home from './Components/Home/Home'
-// import GamePage from './Components/GamePage/GamePage'
-// import Loading from './Components/Loading/Loading'
-// import About from './Components/About/About'
+import Loading from './Components/Loading/Loading'
 
 const Home = React.lazy(() => import('./Components/Home/Home'))
 const GamePage = React.lazy(() => import('./Components/GamePage/GamePage'))
-const Loading = React.lazy(() => import('./Components/Loading/Loading'))
 const About = React.lazy(() => import('./Components/About/About'))
 
 interface RootComponentProps {
@@ -58,11 +54,13 @@ ReactDOM.render(
             <RootComponent>
                 <Router>
                     <Switch>
-                        <Route exact path='/' component={Home}/>
-                        <Route exact path='/game' component={GamePage}/>
-                        <Route exact path='/settings' component={SettingPage}/> 
-                        <Route exact path='/loading' component={Loading} />
-                        <Route exact path='/about' component={About} />
+                        <Suspense fallback={Loading}>
+                            <Route exact path='/' component={Home}/>
+                            <Route exact path='/game' component={GamePage}/>
+                            <Route exact path='/settings' component={SettingPage}/> 
+                            <Route exact path='/loading' component={Loading} />
+                            <Route exact path='/about' component={About} />
+                        </Suspense>
                     </Switch>
                 </Router>
             </RootComponent>
