@@ -4,7 +4,7 @@ import {IGame} from './types'
 
 class Bot {
     private move_level_0 = (playerID : number, game : IGame) : number => {
-        let color = randInt(0, game.countColors)
+        let color = randInt(0, game.countColors - 1)
         while (color === game.players[0].color || color === game.players[1].color) {
             color = randInt(0, game.countColors - 1)
         }
