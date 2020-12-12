@@ -60,4 +60,4 @@ const useSettings = (initialState = {theme: 0, name: '', lang: 'en', devMode: fa
     }
 }
 
-export default createContainer(useSettings, true)
+export default createContainer(useSettings, true, {name: 'SETTINGS_STORE', prefix: 'TILER_'})

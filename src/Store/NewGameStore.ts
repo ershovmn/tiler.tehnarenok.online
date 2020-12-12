@@ -71,4 +71,4 @@ const useNewGame = (initialState = defaultState) => {
     } 
 }
 
-export default createContainer(useNewGame, true)
+export default createContainer(useNewGame, true, {name: 'NEW_GAME_STORE', prefix: 'TILER_'})
