@@ -97,10 +97,12 @@ class Field implements IField {
         this.data = data
         this.startCells = startCells 
 
+        console.log('start colors', props.countColors - 1)
+
         let colorPlayers : Array<number> = [random(props.countColors - 1), random(props.countColors - 1)]
 
         while (colorPlayers[0] === colorPlayers[1]) {
-            colorPlayers[1] = random(props.countColors - 1)
+            colorPlayers[1] = (colorPlayers[1] + 1) % (props.countColors - 1)
         }
 
         this.startCells.forEach((item, idx) => {
@@ -117,10 +119,12 @@ class Field implements IField {
 
             front.forEach(point => {
                 while (this.data[point].color === colorPlayers[0] || this.data[point].color === colorPlayers[1]) {
-                    this.data[point].color = random(props.countColors - 1)
+                    this.data[point].color = (this.data[point].color + 1) % (props.countColors - 1)
                 }
             })
         });
+
+        console.log('end colors')
     }
 }
 
