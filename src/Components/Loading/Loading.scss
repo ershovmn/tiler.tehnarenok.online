@@ -1,3 +1,10 @@
+.lodaing-main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .g-circles circle {
     transform-origin: 120px 120px;
     transform: rotate(0);
@@ -17,9 +24,3 @@
         transform: rotate(360deg);
     }
 }
-
-
-// @-webkit-keyframes blinker {
-//     from { opacity: 1.0 }
-//     to { opacity: 0.0 }
-// }
