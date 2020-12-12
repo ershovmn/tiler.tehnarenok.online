@@ -49,6 +49,8 @@ export interface IGame {
     Move : (color : number) =>  void,
     testMove?: (color: number) => number
     state?: () => IGame
+    winner: () => number
+    playerID: number
 }
 
 export default IGame
