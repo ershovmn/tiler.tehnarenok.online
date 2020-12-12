@@ -16,4 +16,4 @@ yarn start
 и которые примыкают к вашим клеткам, будут захвачены вами. 
 Игра заканчивается, когда кто-либо из игроков набирает более половины очков
 ## Production
-(Играть)[https://tiler-tehnarenok-online.vercel.app]
+[Играть](https://tiler-tehnarenok-online.vercel.app)
