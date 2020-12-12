@@ -99,6 +99,7 @@ const Title = (props : ModalTitleProps) => {
 }
 
 const Body = (props : ModalBodyProps) => {
+    console.log(props)
     return (
         <div className='modal-body'>
             {props.children}
