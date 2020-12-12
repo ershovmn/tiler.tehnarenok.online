@@ -18,6 +18,10 @@ interface RootComponentProps {
     children?: React.ReactNode
 }
 
+if (process.env.NODE_ENV === 'production') {
+    console.log =  () => {};
+}
+
 const RootComponent = (props : RootComponentProps) => {
     let settings = SettingsStore.useContainer()
     if (settings.theme === 0) {
